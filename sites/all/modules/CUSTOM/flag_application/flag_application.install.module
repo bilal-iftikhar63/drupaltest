@@ -1,0 +1,29 @@
+<?php 
+
+/**
+*	implement funciton hook schema
+*/
+
+function flag_application_schema (){
+
+	$schema['flag_application'] = array (
+		'description' => 'TODO: Please describe this table',
+		'fields' => array (
+			'flagging_id' => array (
+				'description' 	=> 'TODO: Please describe this field',
+				'type' 			=> 'int',
+				'not null'		=> TRUE
+			),
+			'status' => array (
+				'description' 	=> 'TODO: Please describe this field',
+				'type' 			=> 'int',
+				'not null'		=> TRUE
+			),
+		),
+		'indexes' => array (
+			'flagging_id' => array('flagging_id'),
+		),
+	);
+	return $schema;
+}
+?>
