@@ -1,0 +1,5 @@
+name = Flag Application
+description = Flag the book to download book PDF.
+core = 7.x
+package = Flags
+dependencies[] = flag (3.x)
