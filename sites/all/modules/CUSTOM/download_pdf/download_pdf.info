@@ -1,0 +1,4 @@
+name = Download PDF
+description = Download PDF on the flag basis.
+core = 7.x
+package = DownloadPDF
