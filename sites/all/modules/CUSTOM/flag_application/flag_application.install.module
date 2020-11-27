@@ -7,18 +7,24 @@
 function flag_application_schema (){
 
 	$schema['flag_application'] = array (
-		'description' => 'TODO: Please describe this table',
+		'description' => 'The Flag application table to track the status of flags.',
 		'fields' => array (
 			'flagging_id' => array (
-				'description' 	=> 'TODO: Please describe this field',
+				'description' 	=> 'Flag IDs as defined by the flag module ',
 				'type' 			=> 'int',
 				'not null'		=> TRUE
 			),
 			'status' => array (
-				'description' 	=> 'TODO: Please describe this field',
+				'description' 	=> 'Status of flag application 0: pending, 1:approved, 2:denied',
 				'type' 			=> 'int',
 				'not null'		=> TRUE
 			),
+			'entity_id' => array (
+				'description' 	=> 'User Id as defined, when flag is associated with it. ',
+				'type' 			=> 'int',
+				'not null'		=> TRUE
+			),
+			
 		),
 		'indexes' => array (
 			'flagging_id' => array('flagging_id'),

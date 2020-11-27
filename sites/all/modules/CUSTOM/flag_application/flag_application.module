@@ -1,5 +1,26 @@
 <?php 
 
+
+
+/**
+ * implementation in flag module
+ */
+function flag_application_flag_flag($flag, $entity_id, $account, $flagging) {
+	
+	if( $flag->name == 'bookmarks') {
+		$insert = db_insert('flag_application')
+				  ->fields(
+					array(
+					'flagging_id' => $flagging->flagging_id,
+					'entity_id'   => $entity_id,
+					'status'	  => 1,
+					'app_name' => $flag->name
+					)
+				)
+				->execute();
+	}
+}
+
 /**
  * Implement Hook_flag_default_flag.
  */
@@ -17,7 +38,7 @@ function flag_application_flag_default_flags() {
 	  'flag_short' => 'Buy Book',
 	  'flag_long' => 'Add this post to your bookmarks',
 	  'flag_message' => 'This post has been added to your bookmarks',
-	  'unflag_short' => 'Unbookmark this',
+	  'unflag_short' => 'Download PDF',
 	  'unflag_long' => 'Remove this post from your bookmarks',
 	  'unflag_message' => 'This post has been removed from your bookmarks',
 	  'unflag_denied_text' => '',
