@@ -22,6 +22,19 @@ function flag_application_flag_flag($flag, $entity_id, $account, $flagging) {
 }
 
 /**
+* implementation of unflag 
+*/
+function flag_application_flag_unflag($flag, $entity_id, $account, $flagging) {
+	if( $flag->name == 'bookmarks') {
+		$insert = db_delete('flag_application')
+				  ->condition( 'flagging_id' , $flagging->flagging_id ) 
+				  ->condition( 'entity_id' , $entity_id )
+				->execute();
+	}
+}
+
+
+/**
  * Implement Hook_flag_default_flag.
  */
 function flag_application_flag_default_flags() {
