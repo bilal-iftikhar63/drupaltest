@@ -1,13 +1,16 @@
 <?php 
 
-function download_pdf_flag_flag($flag, $entity_id, $account, $flagging) {
 
+
+function download_pdf_flag_flag($flag, $entity_id, $account, $flagging) {
+	global $user;
 	if( $flag->name == 'bookmarks') {
 		$insert = db_insert('flag_application')
 				  ->fields(
 					array(
 					'flagging_id' => $flagging->flagging_id,
 					'entity_id'   => $entity_id,
+					'user_id'	  => $user->uid,
 					'status'	  => 1,
 					'app_name' => $flag->name
 					)
@@ -21,10 +24,12 @@ function download_pdf_flag_flag($flag, $entity_id, $account, $flagging) {
 * implementation of unflag 
 */
 function download_pdf_flag_unflag($flag, $entity_id, $account, $flagging) {
+	global $user;
 	if( $flag->name == 'bookmarks') {
 		$insert = db_delete('flag_application')
 				  ->condition( 'flagging_id' , $flagging->flagging_id ) 
 				  ->condition( 'entity_id' , $entity_id )
+				  ->condition( 'user_id' , $user->uid )
 				->execute();
 	}
 }
@@ -33,11 +38,13 @@ function download_pdf_flag_unflag($flag, $entity_id, $account, $flagging) {
 * Function created to add the link in the node
 */
 function download_pdf_node_view($node, $view_mode, $langcode) {
-
+	global $user;
+	//echo "<pre>";print_r($node); exit;
 	// Check if the flag is on. 
 	$select_query = db_select('flag_application', 'c')
 					    ->fields('c')
 					    ->condition('entity_id', $node->book['nid'])
+					    ->condition('user_id', $user->uid)
 					    ->execute()
 					    ->fetchAssoc();
 	if(!empty($node->field_book_pdf_) && !empty($select_query)){
