@@ -1,5 +1,5 @@
 {
-    "require-dev": {
-        "drush/drush": "^10.3"
+    "require": {
+        "drush/drush": "^8.*"
     }
 }
